@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-if***v-show***v-else***v-for***v-model</title>
+	<script src="js/vue.js"></script>
+</head>
+<body id="v-order">
+	<!--
+		v-if
+		v-show
+		v-else
+		v-for 
+		v-model
+	-->
+	<!--  v-for遍历数组  -->
+	<ul>
+		<li v-for='item in items' id={{item.id}}>{{item.name}}</li>
+	</ul>
+	<ul>
+		<li v-for='didi in didis' class="item-{{$index}}">{{$index}}-{{parentMessage}} {{didi.msg}}</li>
+	</ul>
+	<!--  v-for遍历数组  -->
+
+	<!--  v-for遍历对象  -->
+	<ul>
+		<li v-for="value in persons">{{$key}} : {{value}}</li>
+	</ul>
+	<ul>
+		<li v-for="(key,item) in objectValues">{{$key}} : {{item.id}} : {{item.msg}}</li>
+	</ul>
+	<!--  v-for遍历对象  -->
+
+	<!-- filterBy过滤 -->
+	<input v-model="searchText">
+	<ul>
+		<li v-for="user in users | filterBy searchText in 'name'">{{user.name}}</li>
+	</ul>
+	<!-- filterBy过滤 -->
+
+	<!-- orderBy排序 -->
+	<ul>
+		<li v-for="user in users | orderBy field reverse">{{user.name}}</li>
+	</ul>
+	<!-- orderBy排序 -->
+	<form action="">
+		姓名：<!-- lazy绑定了change事件  debounce做延时响应，主要用在ajax，在2.0版本废弃，注意 debounce和lazy同时使用延时不了 -->
+		<input type="text" v-model="formData.name" placeholder="请输入姓名" debounce="2000" lazy/><br/>  
+		性别：
+		<input type="radio" id="man" value="One" v-model="formData.sex"><label for="man">男</label>
+		<input type="radio" id="woman" value="Two" v-model="formData.sex"><label for="woman">女</label><br/>
+		兴趣：
+		<input type="checkbox" id="book" value="book" v-model="formData.interest"><label for="book">阅读</label>
+		<input type="checkbox" id="swim" value="swim" v-model="formData.interest"><label for="swim">游泳</label>
+		<input type="checkbox" id="game" value="game" v-model="formData.interest"><label for="game">游戏</label>
+		<input type="checkbox" id="song" value="song" v-model="formData.interest"><label for="song">唱歌</label><br/>
+		身份：
+		<select name="" id="" v-model="formData.identity" lazy>
+			<option value="teacher" selected="">教师</option>
+			<option value="doctor">医生</option>
+			<option value="lawyer">律师</option>
+		</select>
+	</form>
+	<hr/>
+	<p>你的名字是：{{formData.name}}</p>
+	<p>你的性别是：{{formData.sex}}</p>
+	<p>你的兴趣是: {{formData.interest}}</p>
+	<p>你的身份是：{{formData.identity}}</p>
+</body> 
+<script src="js/v-order1.js"></script>
+</html>
