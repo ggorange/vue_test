@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{ margin: 0; padding: 0;}
+		.A{ width: 300px; height: 200px; background-color: green; margin: 50px auto; transition: all 1s;}
+		.B{ box-shadow:2px 2px 29px rgba(255,0,0,0.4); border-radius: 0;}
+		.C{ border: 10px solid red; border-radius: 50%; }
+		.mar{ display: block; margin: auto; cursor: pointer;}
+		.imgs{ width: 300px; margin: auto; border: 2px solid orange; margin-bottom: 20px; }
+		.imgs img{ display: block; width: 100%;}
+	</style>
+	<script src="js/vue.js"></script>
+</head>
+<body id="order3">
+	<!--
+		v-bind、v-on
+	-->
+	<!-- 绑定style或class -->
+	<div :class="[classA,{B : isB, C : isC }]"></div>
+	<!-- 绑定style或class -->
+
+	<!-- 绑定对象，此时calss和style绑定不支持数组和对象 -->
+	<p v-bind="{ id : someProp, 'OTHERAttr' : otherProp }">text</p>
+	<!-- 绑定对象，此时calss和style绑定不支持数组和对象 -->
+	
+	<!-- 触发方法 -->
+	<div class="imgs"><img :src="srcUrl" data-id="{{id}}"/></div>
+	<button class="mar" @click="changeClass()">点击改变div样式</button>
+	<button class="mar" @click="changeImg()">点击改变图片</button>
+	<!-- 触发方法 -->
+</body>
+<script src="js/v-order3.js"></script>
+</html>
